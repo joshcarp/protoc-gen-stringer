@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+import "google/protobuf/descriptor.proto";
+
+package enumstring;
+
+option go_package = "enumstring";
+
+extend google.protobuf.EnumValueOptions {
+  string string_val = 66196;
+}
