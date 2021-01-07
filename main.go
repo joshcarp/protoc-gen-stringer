@@ -6,6 +6,7 @@ import (
 	enumstring "github.com/joshcarp/protoc-gen-stringer/options"
 	"google.golang.org/protobuf/compiler/protogen"
 	"google.golang.org/protobuf/proto"
+	"log"
 )
 
 func main() {
@@ -33,7 +34,12 @@ func GenerateFiles(gen *protogen.Plugin) error {
 				enumStringName := "enumStringVar" + e.GoIdent.GoName
 				enumIndexName := "enumStringVarIndex" + e.GoIdent.GoName
 				p(`const %s ="`, enumStringName)
+				uniqueStrings := make(map[string]bool)
 				for _, val := range e.Values {
+					if uniqueStrings[enum(e, val)] {
+						log.Fatal("error: duplicate enum string ", enum(e, val))
+					}
+					uniqueStrings[enum(e, val)] = true
 					p("%s", enum(e, val))
 				}
 				p("\"\n")
@@ -55,6 +61,8 @@ func GenerateFiles(gen *protogen.Plugin) error {
 	return %s[%s[i]:%s[i+1]]
 }
 `, e.GoIdent.GoName, e.GoIdent.GoName, enumIndexName, enumStringName, enumIndexName, enumIndexName)
+
+			generateStringToEnum(p, e)
 			}
 		}
 	}
@@ -64,4 +72,21 @@ func GenerateFiles(gen *protogen.Plugin) error {
 
 func enum(e *protogen.Enum, val *protogen.EnumValue) string {
 	return proto.GetExtension(e.Desc.Values().ByNumber(val.Desc.Number()).Options(), enumstring.E_StringVal).(string)
+}
+
+func generateStringToEnum(p func (string, ...interface{}) (int, error), e *protogen.Enum){
+	p("\nfunc StringTo%s(s string) %s {\n", e.GoIdent.GoName, e.GoIdent.GoName)
+	p("switch s {\n")
+
+	for _, val := range e.Values{
+		if val.Desc.Number() == 0{
+			continue
+		}
+		p("case \"%s\":\n", enum(e, val))
+		p("return %s\n", val.GoIdent.GoName)
+	}
+	p("default:\n")
+	p("return 0\n")
+	p("}\n")
+	p("}\n")
 }

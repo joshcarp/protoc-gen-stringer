@@ -1,8 +1,8 @@
-FROM golang:1.14-buster as builder
+FROM golang:1.13-buster as builder
 ADD . /src
 RUN cd /src && go build -o protoc-gen-sysl
 
-FROM golang:1.14-buster
+FROM golang:1.13-buster
 RUN apt-get update && apt-get install -y \
     git \
     unzip \

@@ -12,8 +12,8 @@ enum Hello {
   HelloUnspecified = 0 [(string_val) = "Unspecified"];
   HelloBar2= 2 [(string_val) = "ba123123r"];
   HelloBar3= 3 [(string_val) = "b123ar"];
-  HelloBar4= 4 [(string_val) = "ba123r"];
-  HelloBar5= 5 [(string_val) = "ba123r"];
+  HelloBar4= 4 [(string_val) = "ba123r1"];
+  HelloBar5= 5 [(string_val) = "ba123r2"];
   HelloBar6= 6 [(string_val) = "ba1234r"];
   HelloBar7= 7 [(string_val) = "bac3tr"];
   HelloBar8= 8 [(string_val) = "bawetrwrr"];
@@ -22,11 +22,11 @@ enum Hello {
 }
 
 enum Bar {
-  BarUnspecified= 0 [(string_val) = "BarBarBarbar1233"];
+  Barnspecified= 0 [(string_val) = "BarBarBarbar1233"];
   BarBar2= 2 [(string_val) = "BarBarBarba123123r"];
   BarBar3= 3 [(string_val) = "BarBarBarb123ar"];
-  BarBar4= 4 [(string_val) = "BarBarBarba123r"];
-  BarBar5= 5 [(string_val) = "BarBarBarba123r"];
+  BarBar4= 4 [(string_val) = "BarBarBarba123r1"];
+  BarBar5= 5 [(string_val) = "BarBarBarba123r2"];
   BarBar6= 6 [(string_val) = "BarBarBarba1234r"];
   BarBar7= 7 [(string_val) = "BarBarBarbac3tr"];
   BarBar8= 8 [(string_val) = "BarBarBarbawetrwrr"];
