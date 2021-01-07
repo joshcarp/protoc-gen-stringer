@@ -8,11 +8,9 @@ jobs:
     steps:
     - name: Checkout repo
       uses: actions/checkout@v2
-      with:
-        fetch-depth: '0'
     - name: Bump version and push tag
-      uses: anothrNick/github-tag-action@1.17.2
+      uses: anothrNick/github-tag-action@1.26.0
       env:
-        GITHUB_TOKEN: ${{ secrets.ORG_GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GHA_GITHUB_TOKEN }}
         WITH_V: true
         DEFAULT_BUMP: patch
