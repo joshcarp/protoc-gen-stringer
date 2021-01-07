@@ -11,10 +11,10 @@ extend google.protobuf.EnumValueOptions {
 enum Hello {
   HelloBar1 = 0 [(string_val) = "bar1233"];
   HelloBar2 = 2 [(string_val) = "ba123123r"];
-  HelloBar3 = 3 [(string_val) = "b123ar"];
-  HelloBar4 = 4 [(string_val) = "ba123r"];
-  HelloBar5 = 5 [(string_val) = "ba123r"];
-  HelloBar6 = 6 [(string_val) = "ba1234r"];
+  HelloBar3 = 3 [(string_val) = "b123ar1"];
+  HelloBar4 = 4 [(string_val) = "ba123r3"];
+  HelloBar5 = 5 [(string_val) = "ba123r132"];
+  HelloBar6 = 6 [(string_val) = "ba1234r3"];
   HelloBar7 = 7 [(string_val) = "bac3tr"];
   HelloBar8 = 8 [(string_val) = "bawetrwrr"];
   HelloBar9 = 9 [(string_val) = "bactrfasdfr"];

@@ -12,8 +12,8 @@ enum Hello {
   HelloBar1 = 0 [(string_val) = "bar1233"];
   HelloBar2 = 2 [(string_val) = "ba123123r"];
   HelloBar3 = 3 [(string_val) = "b123ar"];
-  HelloBar4 = 4 [(string_val) = "ba123r"];
-  HelloBar5 = 5 [(string_val) = "ba123r"];
+  HelloBar4 = 4 [(string_val) = "ba123r1"];
+  HelloBar5 = 5 [(string_val) = "ba123r2"];
   HelloBar6 = 6 [(string_val) = "ba1234r"];
   HelloBar7 = 7 [(string_val) = "bac3tr"];
   HelloBar8 = 8 [(string_val) = "bawetrwrr"];

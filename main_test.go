@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"flag"
-	"fmt"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/protobuf/compiler/protogen"
 	"google.golang.org/protobuf/proto"
@@ -17,6 +16,7 @@ import (
 
 var tests = []string{
 	"simple/",
+	"double/",
 }
 
 func Test(t *testing.T) {
@@ -29,7 +29,6 @@ func Test(t *testing.T) {
 			response := &pluginpb.CodeGeneratorResponse{}
 			err = proto.Unmarshal(res.Bytes(), response)
 			require.NoError(t, err)
-			fmt.Println(response.String())
 		})
 	}
 }

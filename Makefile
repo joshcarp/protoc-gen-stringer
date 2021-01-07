@@ -35,3 +35,4 @@ docker:			## Builds the Docker image.
 
 update-tests:		## Updates the code_generator_request.pb.bin for the go test cases.
 	protoc --debug_out="tests/simple:tests/." ./tests/simple/*.proto
+	protoc --debug_out="tests/double:tests/." ./tests/double/*.proto
