@@ -28,4 +28,4 @@ jobs:
                 push: true
                 tags: |
                   gcr.io/joshcarp/cloud-spanner-emulator:latest
-                  gcr.io/joshcarp/cloud-spanner-emulator:{{ github.ref }}
+                  gcr.io/joshcarp/cloud-spanner-emulator:${{ github.ref }}
