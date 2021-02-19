@@ -27,5 +27,5 @@ jobs:
         with:
           push: true
           tags: |
-            gcr.io/joshcarp/cloud-spanner-emulator:latest
-            gcr.io/joshcarp/cloud-spanner-emulator:${{ steps.get_version.outputs.version }}
+            gcr.io/joshcarp/protoc-gen-stringer:latest
+            gcr.io/joshcarp/protoc-gen-stringer:${{ steps.get_version.outputs.version }}
