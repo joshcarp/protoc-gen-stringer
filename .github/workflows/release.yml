@@ -19,8 +19,6 @@ jobs:
           gcloud config set core/project altethical
           gcloud auth configure-docker
           gcloud config set run/region us-central1
-      - name: Extract tag name
-        id: tag
       - id: get_version
         uses: battila7/get-version-action@v2
       - name: Build and push
