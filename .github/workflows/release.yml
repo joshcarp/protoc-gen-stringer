@@ -21,11 +21,8 @@ jobs:
           gcloud config set run/region us-central1
       - name: Extract tag name
         id: tag
-        uses: actions/github-script@0.2.0
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            return context.payload.ref.replace(refs\/tags\/, '');
+      - id: get_version
+        uses: battila7/get-version-action@v2
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v2
@@ -33,4 +30,4 @@ jobs:
           push: true
           tags: |
             gcr.io/joshcarp/cloud-spanner-emulator:latest
-            gcr.io/joshcarp/cloud-spanner-emulator:${{ steps.tag.outputs.result }}
+            gcr.io/joshcarp/cloud-spanner-emulator:${{ steps.get_version.outputs.version }}
