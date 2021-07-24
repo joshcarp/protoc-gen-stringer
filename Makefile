@@ -24,11 +24,11 @@ demo:			## Makes sure the demo directory still builds and compiles
 ci: test				## Runs the same ci that is on master.
 	golangci-lint run
 
-grpc: 	## Executes proto to generate go code
+example: 	## Executes proto to generate go code
 	protoc -I example/ example/example.proto --go_out=paths=source_relative:example --stringer_out=source_relative:example
 
 options: 	## Executes proto to generate go code
-	protoc -I options/ options/options.proto --go_out=plugins=grpc:options
+	protoc -I enumstring/ enumstring/options.proto --go_out=paths=source_relative:enumstring
 
 docker:			## Builds the Docker image.
 	docker build -t protoc-gen-stringer .
