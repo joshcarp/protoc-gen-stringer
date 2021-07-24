@@ -1,38 +1,38 @@
-package foobar
+package example
 
 import "fmt"
 
-const enumStringVarHello = "Unspecifiedba123123rb123arba123r1ba123r2ba1234rbac3trbawetrwrrbactrfasdfrbawctrwertr"
+const enumStringVarExample = "Unspecifiedba123123rb123arba123r1ba123r2ba1234rbac3trbawetrwrrbactrfasdfrbawctrwertr"
 
-var enumStringVarIndexHello = [...]uint8{0, 11, 20, 26, 33, 40, 47, 53, 62, 73, 84}
+var enumStringVarIndexExample = [...]uint8{0, 11, 20, 26, 33, 40, 47, 53, 62, 73, 84}
 
-func (i Hello) StringVal() string {
-	if i < 0 || i+1 >= Hello(len(enumStringVarIndexHello)) {
+func (i Example) StringVal() string {
+	if i < 0 || i+1 >= Example(len(enumStringVarIndexExample)) {
 		return fmt.Sprintf("%d", i)
 	}
-	return enumStringVarHello[enumStringVarIndexHello[i]:enumStringVarIndexHello[i+1]]
+	return enumStringVarExample[enumStringVarIndexExample[i]:enumStringVarIndexExample[i+1]]
 }
 
-func StringToHello(s string) Hello {
+func StringToExample(s string) Example {
 	switch s {
 	case "ba123123r":
-		return Hello_HelloBar2
+		return Example_exampleBar2
 	case "b123ar":
-		return Hello_HelloBar3
+		return Example_exampleBar3
 	case "ba123r1":
-		return Hello_HelloBar4
+		return Example_exampleBar4
 	case "ba123r2":
-		return Hello_HelloBar5
+		return Example_exampleBar5
 	case "ba1234r":
-		return Hello_HelloBar6
+		return Example_exampleBar6
 	case "bac3tr":
-		return Hello_HelloBar7
+		return Example_exampleBar7
 	case "bawetrwrr":
-		return Hello_HelloBar8
+		return Example_exampleBar8
 	case "bactrfasdfr":
-		return Hello_HelloBar9
+		return Example_exampleBar9
 	case "bawctrwertr":
-		return Hello_HelloBar10
+		return Example_exampleBar10
 	default:
 		return 0
 	}

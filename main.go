@@ -26,7 +26,8 @@ func GenerateFiles(gen *protogen.Plugin) error {
 	p := func(format string, a ...interface{}) (int, error) {
 		return buf.Write([]byte(fmt.Sprintf(format, a...)))
 	}
-	for _, file := range gen.Files {
+	for _, filename := range gen.Request.GetFileToGenerate() {
+		file := gen.FilesByPath[filename]
 		if includeImport(*file.Proto.Name) {
 			p("package %s\n\n", file.GoPackageName)
 			p("import \"fmt\"\n")

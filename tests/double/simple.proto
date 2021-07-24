@@ -2,21 +2,21 @@ syntax = "proto3";
 
 import "google/protobuf/descriptor.proto";
 
-package foobar;
+package example;
 
 extend google.protobuf.EnumValueOptions {
   string string_val = 66196;
 }
 
-enum Hello {
-  HelloBar1 = 0 [(string_val) = "bar1233"];
-  HelloBar2 = 2 [(string_val) = "ba123123r"];
-  HelloBar3 = 3 [(string_val) = "b123ar"];
-  HelloBar4 = 4 [(string_val) = "ba123r1"];
-  HelloBar5 = 5 [(string_val) = "ba123r2"];
-  HelloBar6 = 6 [(string_val) = "ba1234r"];
-  HelloBar7 = 7 [(string_val) = "bac3tr"];
-  HelloBar8 = 8 [(string_val) = "bawetrwrr"];
-  HelloBar9 = 9 [(string_val) = "bactrfasdfr"];
-  HelloBar10 = 10 [(string_val) = "bawctrwertr"];
+enum example {
+  exampleBar1 = 0 [(string_val) = "bar1233"];
+  exampleBar2 = 2 [(string_val) = "ba123123r"];
+  exampleBar3 = 3 [(string_val) = "b123ar"];
+  exampleBar4 = 4 [(string_val) = "ba123r1"];
+  exampleBar5 = 5 [(string_val) = "ba123r2"];
+  exampleBar6 = 6 [(string_val) = "ba1234r"];
+  exampleBar7 = 7 [(string_val) = "bac3tr"];
+  exampleBar8 = 8 [(string_val) = "bawetrwrr"];
+  exampleBar9 = 9 [(string_val) = "bactrfasdfr"];
+  exampleBar10 = 10 [(string_val) = "bawctrwertr"];
 }
