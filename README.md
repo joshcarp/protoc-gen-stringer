@@ -2,13 +2,13 @@
 
 ## About <a name = "about"></a>
 
-A proto plugin to generate string values as defined by proto options.
+A proto plugin to generate string values for go as defined by proto options.
 
-This proto plugin was created because protobufs use c++ style naming
-scopes: [github.com/protocolbuffers/protobuf/issues/5425](https://github.com/protocolbuffers/protobuf/issues/5425). This
-means that it's forbidden to have the following in protoc:
+This proto plugin was created because protobufs use c++ style naming scopes: [github.com/protocolbuffers/protobuf/issues/5425](https://github.com/protocolbuffers/protobuf/issues/5425). 
+This means that it's forbidden to have the following in ptotobuf:
 
 ```proto
+
 enum Foo {
     Foo1 = 1;
     Foo2 = 2;
@@ -42,7 +42,7 @@ enum Bar {
 
 ## Getting Started <a name = "getting_started"></a>
 
-### Installing
+### Installing <a name = "installing"></a>
 
 ```
 go install github.com/joshcarp/protoc-gen-stringer
