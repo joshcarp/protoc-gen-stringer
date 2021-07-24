@@ -15,6 +15,8 @@ func (i Foo) StringVal() string {
 
 func StringToFoo(s string) Foo {
 	switch s {
+	case "Foo1":
+		return Foo_Foo1
 	case "Foo2":
 		return Foo_Foo2
 	case "Unknown":
@@ -37,6 +39,8 @@ func (i Bar) StringVal() string {
 
 func StringToBar(s string) Bar {
 	switch s {
+	case "Bar1":
+		return Bar_Bar1
 	case "Bar2":
 		return Bar_Bar2
 	case "Unknown":

@@ -52,11 +52,15 @@ go install github.com/joshcarp/protoc-gen-stringer
 
 ```proto
 enum Foo {
-    Foo_Unknown = 1 [(string_val) = "Unknown"];
+    Foo1 = 0 [(string_val) = "Foo1"];
+    Foo2 = 1 [(string_val) = "Foo2"];
+    Foo_Unknown = 2 [(string_val) = "Unknown"];
 }
 
 enum Bar {
-    Bar_Unknown = 1 [(string_val) = "Unknown"];
+    Bar1 = 0 [(string_val) = "Bar1"];
+    Bar2 = 1 [(string_val) = "Bar2"];
+    Bar_Unknown = 2 [(string_val) = "Unknown"]; // No error but now custom stringer logic needs to be implemented
 }
 ```
 
@@ -64,5 +68,11 @@ enum Bar {
 protoc -I example/ example/example.proto --go_out=paths=source_relative:example --stringer_out=source_relative:example
 ```
 
-Generates "stringer.go":
-
+This will generate a `StringVal()` method for each enum, and a `func StringToEnum(s string) Enum` function:
+```go
+fmt.Println(example.Foo_Unknown.StringVal())
+// Unknown
+fmt.Println(example.Bar_Unknown.StringVal())
+// Unknown
+a := example.StringToFoo("Unknown") // gives example.Foo_Foo_Unknown
+```

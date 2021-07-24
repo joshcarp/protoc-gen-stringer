@@ -23,8 +23,8 @@ func includeImport(path string) bool {
 func GenerateFiles(gen *protogen.Plugin) error {
 	var buf bytes.Buffer
 	g := gen.NewGeneratedFile("stringer.go", gen.Files[0].GoImportPath)
-	p := func(format string, a ...interface{}) (int, error) {
-		return buf.Write([]byte(fmt.Sprintf(format, a...)))
+	p := func(format string, a ...interface{}) {
+		_, _ = buf.Write([]byte(fmt.Sprintf(format, a...)))
 	}
 	for _, filename := range gen.Request.GetFileToGenerate() {
 		file := gen.FilesByPath[filename]
@@ -62,7 +62,6 @@ func GenerateFiles(gen *protogen.Plugin) error {
 	return %s[%s[i]:%s[i+1]]
 }
 `, e.GoIdent.GoName, e.GoIdent.GoName, enumIndexName, enumStringName, enumIndexName, enumIndexName)
-
 			generateStringToEnum(p, e)
 			}
 		}
@@ -75,14 +74,11 @@ func enum(e *protogen.Enum, val *protogen.EnumValue) string {
 	return proto.GetExtension(e.Desc.Values().ByNumber(val.Desc.Number()).Options(), enumstring.E_StringVal).(string)
 }
 
-func generateStringToEnum(p func (string, ...interface{}) (int, error), e *protogen.Enum){
+func generateStringToEnum(p func (string, ...interface{}), e *protogen.Enum){
 	p("\nfunc StringTo%s(s string) %s {\n", e.GoIdent.GoName, e.GoIdent.GoName)
 	p("switch s {\n")
 
 	for _, val := range e.Values{
-		if val.Desc.Number() == 0{
-			continue
-		}
 		p("case \"%s\":\n", enum(e, val))
 		p("return %s\n", val.GoIdent.GoName)
 	}
