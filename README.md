@@ -1,14 +1,9 @@
 # protoc-gen-stringer
 
-## Table of Contents
-+ [About](#about)
-+ [Getting Started](#getting_started)
-+ [Usage](#usage)
-
 ## About <a name = "about"></a>
 A proto plugin to generate string values as defined by proto options.
 
-This proto plugin was created because protobuffs use c++ style naming scopes: [github.com/protocolbuffers/protobuf/issues/5425](https://github.com/protocolbuffers/protobuf/issues/5425).
+This proto plugin was created because protobufs use c++ style naming scopes: [github.com/protocolbuffers/protobuf/issues/5425](https://github.com/protocolbuffers/protobuf/issues/5425).
 This means that it's forbidden to have the following in protoc:
 ```proto
 enum Foo {
@@ -34,14 +29,6 @@ enum Bar {
 ```
 
 ## Getting Started <a name = "getting_started"></a>
-
-### Prerequisites
-
-What things you need to install the software and how to install them.
-
-```
-Give examples
-```
 
 ### Installing
 
