@@ -1,31 +1,43 @@
 # protoc-gen-stringer
 
 ## About <a name = "about"></a>
+
 A proto plugin to generate string values as defined by proto options.
 
-This proto plugin was created because protobufs use c++ style naming scopes: [github.com/protocolbuffers/protobuf/issues/5425](https://github.com/protocolbuffers/protobuf/issues/5425).
-This means that it's forbidden to have the following in protoc:
+This proto plugin was created because protobufs use c++ style naming
+scopes: [github.com/protocolbuffers/protobuf/issues/5425](https://github.com/protocolbuffers/protobuf/issues/5425). This
+means that it's forbidden to have the following in protoc:
+
 ```proto
 enum Foo {
-    Unknown = 1;
+    Foo1 = 1;
+    Foo2 = 2;
+    Unknown = 3;
 }
 
 enum Bar {
-    Unknown = 1; // 'Unknown' is already defined in scope 'example'
+    Bar1 = 1;
+    Bar2 = 2;
+    Unknown = 3; // 'Unknown' is already defined in scope 'example'
 }
 
 ```
-The solution to this is to prefix the enum with a stringval, but this means that a custom stringer logic needs to be implemented, which is annoying and unmaintainable.
+
+The solution to this is to prefix the enum with a stringval, but this means that a custom stringer logic needs to be
+implemented, which is annoying and unmaintainable.
 
 ```proto
 enum Foo {
-    Foo_Unknown = 1;
+    Foo1 = 1;
+    Foo2 = 2;
+    Foo_Unknown = 3;
 }
 
 enum Bar {
-    Bar_Unknown = 1; // No error but now custom stringer logic needs to be implemented
+    Bar1 = 1;
+    Bar2 = 2;
+    Bar_Unknown = 3; // No error but now custom stringer logic needs to be implemented
 }
-
 ```
 
 ## Getting Started <a name = "getting_started"></a>
@@ -38,6 +50,19 @@ go install github.com/joshcarp/protoc-gen-stringer
 
 ## Usage <a name = "usage"></a>
 
+```proto
+enum Foo {
+    Foo_Unknown = 1 [(string_val) = "Unknown"];
+}
+
+enum Bar {
+    Bar_Unknown = 1 [(string_val) = "Unknown"];
+}
+```
+
 ```
 protoc -I example/ example/example.proto --go_out=paths=source_relative:example --stringer_out=source_relative:example
 ```
+
+Generates "stringer.go":
+
