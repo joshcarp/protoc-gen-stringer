@@ -25,10 +25,10 @@ ci: test				## Runs the same ci that is on master.
 	golangci-lint run
 
 example: 	## Executes proto to generate go code
-	protoc -I example/ example/example.proto --go_out=paths=source_relative:example --stringer_out=source_relative:example
+	protoc -I . example/*.proto --go_out=paths=source_relative:. --stringer_out=paths=source_relative:.
 
 options: 	## Executes proto to generate go code
-	protoc -I enumstring/ enumstring/options.proto --go_out=paths=source_relative:enumstring
+	protoc -I stringerpb/ stringerpb/*.proto --go_out=paths=source_relative:stringerpb
 
 docker:			## Builds the Docker image.
 	docker build -t protoc-gen-stringer .

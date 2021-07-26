@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option go_package = "github.com/joshcarp/protoc-gen-stringer;example";
+option java_multiple_files = true;
+option java_package = "com.joshcarp.example";
+option java_outer_classname = "example";
+
+
+import "google/protobuf/descriptor.proto";
+import "stringerpb/stringer.proto";
+
+package example;
+
+
+enum Foop {
+  Foo1p = 0 [(stringerpb.string_val) = "Foo1"];
+  Foo2p = 1 [(stringerpb.string_val) = "Foo2"];
+  Foop_Unknown = 2 [(stringerpb.string_val) = "Unknown"];
+}
+
+enum Barp {
+  Bar1p = 0 [(stringerpb.string_val) = "Bar1"];
+  Bar2p = 1 [(stringerpb.string_val) = "Bar2"];
+  Barp_Unknown = 2 [(stringerpb.string_val) = "Unknown"]; // No error but now custom stringer logic needs to be implemented
+}

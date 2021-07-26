@@ -7,22 +7,19 @@ option java_outer_classname = "example";
 
 
 import "google/protobuf/descriptor.proto";
-
-extend google.protobuf.EnumValueOptions {
-  string string_val = 66196;
-}
+import "stringerpb/stringer.proto";
 
 package example;
 
 
 enum Foo {
-  Foo1 = 0 [(string_val) = "Foo1"];
-  Foo2 = 1 [(string_val) = "Foo2"];
-  Foo_Unknown = 2 [(string_val) = "Unknown"];
+  Foo1 = 0 [(stringerpb.string_val) = "Foo1"];
+  Foo2 = 1 [(stringerpb.string_val) = "Foo2"];
+  Foo_Unknown = 2 [(stringerpb.string_val) = "Unknown"];
 }
 
 enum Bar {
-  Bar1 = 0 [(string_val) = "Bar1"];
-  Bar2 = 1 [(string_val) = "Bar2"];
-  Bar_Unknown = 2 [(string_val) = "Unknown"]; // No error but now custom stringer logic needs to be implemented
+  Bar1 = 0 [(stringerpb.string_val) = "Bar1"];
+  Bar2 = 1 [(stringerpb.string_val) = "Bar2"];
+  Bar_Unknown = 2 [(stringerpb.string_val) = "Unknown"]; // No error but now custom stringer logic needs to be implemented
 }
