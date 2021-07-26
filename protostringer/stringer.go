@@ -63,9 +63,32 @@ func (e *enumRegistry) Register(descriptors ...protoreflect.Descriptor) {
 
 // enumMap stores two maps, one for mapping numbers to strings, and another
 // for strings to enum values
+//
+// should be created through the newEnumMap function and never modified
 type enumMap struct {
 	stringToEnum map[string]protoreflect.EnumNumber
 	enumToString map[protoreflect.EnumNumber]string
+}
+
+func newEnumMap(desc protoreflect.EnumDescriptor) *enumMap {
+	stringToEnum := map[string]protoreflect.EnumNumber{}
+	enumToString := map[protoreflect.EnumNumber]string{}
+	values := desc.Values()
+	for i := 0; i < values.Len(); i++ {
+		valueDesc := values.Get(i)
+		number := valueDesc.Number()
+		options := valueDesc.Options().(*descriptorpb.EnumValueOptions)
+		stringValue, ok := proto.GetExtension(options, stringer.E_Enum).(string)
+		if !ok || stringValue == "" {
+			stringValue = "TODO"
+		}
+		enumToString[number] = stringValue
+		stringToEnum[stringValue] = number
+	}
+	return &enumMap{
+		stringToEnum: stringToEnum,
+		enumToString: enumToString,
+	}
 }
 
 func (e *enumMap) String(value protoreflect.EnumNumber) string {
@@ -102,23 +125,7 @@ func loadEnumListToRegistry(descriptor enumLister, registry *enumRegistry) {
 }
 
 func loadEnumDescriptorToRegistry(descriptor protoreflect.EnumDescriptor, registry *enumRegistry) {
-	enumMap := &enumMap{
-		stringToEnum: map[string]protoreflect.EnumNumber{},
-		enumToString: map[protoreflect.EnumNumber]string{},
-	}
-	values := descriptor.Values()
-	for i := 0; i < values.Len(); i++ {
-		valueDesc := values.Get(i)
-		number := valueDesc.Number()
-		options := valueDesc.Options().(*descriptorpb.EnumValueOptions)
-		stringValue, ok := proto.GetExtension(options, stringer.E_Enum).(string)
-		if !ok || stringValue == "" {
-			stringValue = "TODO"
-		}
-		enumMap.enumToString[number] = stringValue
-		enumMap.stringToEnum[stringValue] = number
-	}
-	registry.registry[string(descriptor.FullName())] = enumMap
+	registry.registry[string(descriptor.FullName())] = newEnumMap(descriptor)
 }
 
 var (
