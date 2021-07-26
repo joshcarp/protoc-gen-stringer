@@ -1,22 +1,21 @@
 syntax = "proto3";
 
+option go_package = "github.com/joshcarp/protoc-gen-stringer/tests/simple;simple";
+
 import "google/protobuf/descriptor.proto";
+import "stringer/enum.proto";
 
 package example;
 
-extend google.protobuf.EnumValueOptions {
-  string string_val = 66196;
-}
-
 enum example {
-  exampleBar1 = 0 [(string_val) = "bar1233"];
-  exampleBar2 = 2 [(string_val) = "ba123123r"];
-  exampleBar3 = 3 [(string_val) = "b123ar1"];
-  exampleBar4 = 4 [(string_val) = "ba123r3"];
-  exampleBar5 = 5 [(string_val) = "ba123r132"];
-  exampleBar6 = 6 [(string_val) = "ba1234r3"];
-  exampleBar7 = 7 [(string_val) = "bac3tr"];
-  exampleBar8 = 8 [(string_val) = "bawetrwrr"];
-  exampleBar9 = 9 [(string_val) = "bactrfasdfr"];
-  exampleBar10 = 10 [(string_val) = "bawctrwertr"];
+  exampleBar1 = 0 [(stringer.enum) = "exampleBar1"];
+  exampleBar2 = 2 [(stringer.enum) = "exampleBar2"];
+  exampleBar3 = 3 [(stringer.enum) = "exampleBar3"];
+  exampleBar4 = 4 [(stringer.enum) = "exampleBar4"];
+  exampleBar5 = 5 [(stringer.enum) = "exampleBar5"];
+  exampleBar6 = 6 [(stringer.enum) = "exampleBar6"];
+  exampleBar7 = 7 [(stringer.enum) = "exampleBar7"];
+  exampleBar8 = 8 [(stringer.enum) = "exampleBar8"];
+  exampleBar9 = 9 [(stringer.enum) = "exampleBar9"];
+  exampleBar10 = 10 [(stringer.enum) = "exampleBar10"];
 }

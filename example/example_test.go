@@ -10,6 +10,8 @@ func ExampleFoo_StringVal(){
 
 func ExampleStringToFoo(){
 	fmt.Println(StringToFoo("Unknown"))
+	fmt.Println(StringToFoo("90mds90fumasd0fuasdf"))
 	// Output:
-	// Foo_Unknown
+	// Foo_Unknown true
+	// Foo1 false
 }

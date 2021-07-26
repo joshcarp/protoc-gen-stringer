@@ -7,19 +7,19 @@ option java_outer_classname = "example";
 
 
 import "google/protobuf/descriptor.proto";
-import "stringerpb/stringer.proto";
+import "stringer/enum.proto";
 
 package example;
 
 
 enum Foop {
-  Foo1p = 0 [(stringerpb.string_val) = "Foo1"];
-  Foo2p = 1 [(stringerpb.string_val) = "Foo2"];
-  Foop_Unknown = 2 [(stringerpb.string_val) = "Unknown"];
+  Foo1p = 0 [(stringer.enum) = "Foo1"];
+  Foo2p = 1 [(stringer.enum) = "Foo2"];
+  Foop_Unknown = 2 [(stringer.enum) = "Unknown"];
 }
 
 enum Barp {
-  Bar1p = 0 [(stringerpb.string_val) = "Bar1"];
-  Bar2p = 1 [(stringerpb.string_val) = "Bar2"];
-  Barp_Unknown = 2 [(stringerpb.string_val) = "Unknown"]; // No error but now custom stringer logic needs to be implemented
+  Bar1p = 0 [(stringer.enum) = "Bar1"];
+  Bar2p = 1 [(stringer.enum) = "Bar2"];
+  Barp_Unknown = 2 [(stringer.enum) = "Unknown"]; // No error but now custom stringer logic needs to be implemented
 }

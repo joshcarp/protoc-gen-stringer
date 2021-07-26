@@ -28,11 +28,11 @@ example: 	## Executes proto to generate go code
 	protoc -I . example/*.proto --go_out=paths=source_relative:. --stringer_out=paths=source_relative:.
 
 options: 	## Executes proto to generate go code
-	protoc -I stringerpb/ stringerpb/*.proto --go_out=paths=source_relative:stringerpb
+	protoc -I stringer/ stringer/*.proto --go_out=paths=source_relative:stringer
 
 docker:			## Builds the Docker image.
 	docker build -t protoc-gen-stringer .
 
 update-tests:		## Updates the code_generator_request.pb.bin for the go test cases.
-	protoc --debug_out="tests/simple:tests/." ./tests/simple/*.proto
-	protoc --debug_out="tests/double:tests/." ./tests/double/*.proto
+	protoc -I . --debug_out="tests/simple:tests/." --go_out=paths=source_relative:. --stringer_out=paths=source_relative:. ./tests/simple/*.proto
+	protoc -I . --debug_out="tests/double:tests/." --go_out=paths=source_relative:. --stringer_out=paths=source_relative:. ./tests/double/*.proto

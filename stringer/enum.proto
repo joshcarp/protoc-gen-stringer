@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+import "google/protobuf/descriptor.proto";
+
+package stringer;
+
+option go_package = "github.com/joshcarp/protoc-gen-stringer/stringer;stringer";
+
+extend google.protobuf.EnumValueOptions {
+  string enum = 66196;
+}

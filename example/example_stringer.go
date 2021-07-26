@@ -2,50 +2,44 @@
 // source: example/example.proto
 package example
 
-import "fmt"
+var enumStringMapFoo_string = map[Foo]string{
+	Foo_Foo1:        "Foo1",
+	Foo_Foo2:        "Foo2",
+	Foo_Foo_Unknown: "Unknown",
+}
 
-const enumStringVarFoo = "Foo1Foo2Unknown"
-
-var enumStringVarIndexFoo = [...]uint8{0, 4, 8, 15}
+var enumStringVarFoo_val = map[string]Foo{
+	"Foo1":    Foo_Foo1,
+	"Foo2":    Foo_Foo2,
+	"Unknown": Foo_Foo_Unknown,
+}
 
 func (i Foo) StringVal() string {
-	if i < 0 || i+1 >= Foo(len(enumStringVarIndexFoo)) {
-		return fmt.Sprintf("%d", i)
-	}
-	return enumStringVarFoo[enumStringVarIndexFoo[i]:enumStringVarIndexFoo[i+1]]
-}
-func StringToFoo(s string) Foo {
-	switch s {
-	case "Foo1":
-		return Foo_Foo1
-	case "Foo2":
-		return Foo_Foo2
-	case "Unknown":
-		return Foo_Foo_Unknown
-	default:
-		return 0
-	}
+	return enumStringMapFoo_string[i]
 }
 
-const enumStringVarBar = "Bar1Bar2Unknown"
+func StringToFoo(s string) (Foo, bool) {
+	val, ok := enumStringVarFoo_val[s]
+	return val, ok
+}
 
-var enumStringVarIndexBar = [...]uint8{0, 4, 8, 15}
+var enumStringMapBar_string = map[Bar]string{
+	Bar_Bar1:        "Bar1",
+	Bar_Bar2:        "Bar2",
+	Bar_Bar_Unknown: "Unknown",
+}
+
+var enumStringVarBar_val = map[string]Bar{
+	"Bar1":    Bar_Bar1,
+	"Bar2":    Bar_Bar2,
+	"Unknown": Bar_Bar_Unknown,
+}
 
 func (i Bar) StringVal() string {
-	if i < 0 || i+1 >= Bar(len(enumStringVarIndexBar)) {
-		return fmt.Sprintf("%d", i)
-	}
-	return enumStringVarBar[enumStringVarIndexBar[i]:enumStringVarIndexBar[i+1]]
+	return enumStringMapBar_string[i]
 }
-func StringToBar(s string) Bar {
-	switch s {
-	case "Bar1":
-		return Bar_Bar1
-	case "Bar2":
-		return Bar_Bar2
-	case "Unknown":
-		return Bar_Bar_Unknown
-	default:
-		return 0
-	}
+
+func StringToBar(s string) (Bar, bool) {
+	val, ok := enumStringVarBar_val[s]
+	return val, ok
 }
